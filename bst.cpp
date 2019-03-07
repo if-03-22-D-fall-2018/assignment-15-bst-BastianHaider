@@ -12,6 +12,7 @@
 */
 #include "bst.h"
 #include <stdlib.h>
+#include "general.h"
 
 struct Node{
   int element;
@@ -23,30 +24,49 @@ Bst new_bst()
 {
   return 0;
 }
-
 void delete_bst(Bst bst)
 {
-
+  if (bst != 0) {
+    sfree(bst);
+  }
 }
 int get_depth(Bst bst)
 {
-  return 0;
+  if (bst == 0)
+  {
+    return 0;
+  }
+  else
+  {
+    return 1;
+  }
 }
 void add(Bst* bst, int value)
 {
-
+  Bst new_Node = (Bst)malloc(sizeof(struct Node));
+  new_Node->element= value;
+  new_Node->left= 0;
+  new_Node->right = 0;
+  if (*bst == 0)
+  {
+    *bst = new_Node;
+  }
 }
 int root_value(Bst bst)
 {
-  return 0;
+  if (bst->element == 0)
+  {
+    return 0;
+  }
+  return bst->element;
 }
 Bst left_subtree(Bst root)
 {
-  return 0;
+  return root->left;
 }
 Bst right_subtree(Bst root)
 {
-  return 0;
+  return root->right;
 }
 int traverse_pre_order(Bst bst, int *elements, int start)
 {
