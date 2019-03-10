@@ -26,19 +26,33 @@ Bst new_bst()
 }
 void delete_bst(Bst bst)
 {
-  if (bst != 0) {
-    sfree(bst);
+  if (bst==0)
+  {
+    return;
   }
+  delete_bst(bst->left);
+  delete_bst(bst->right);
+  sfree(bst);
 }
 int get_depth(Bst bst)
 {
-  if (bst == 0)
+  if(bst == 0)
   {
-    return 0;
+      return 0;
   }
   else
   {
-    return 1;
+    int leftTree = get_depth(bst->left);
+    int rightTree = get_depth(bst->right);
+
+    if(leftTree <= rightTree)
+    {
+      return rightTree+1;
+    }
+    else
+    {
+      return leftTree+1;
+    }
   }
 }
 void add(Bst* bst, int value)
